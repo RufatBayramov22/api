@@ -12,12 +12,11 @@ dotenv.config();
 
 app.use(helmet());
 
-// CORS middleware'ini ayarla
 const corsOptions = {
-    origin: 'http://tapal.az', // Allow requests from this origin
-    credentials: true // Allow credentials (cookies, authorization headers)
+    origin: 'http://tapal.az',
+    credentials: true
 };
-  
+
 app.use(cors(corsOptions));
 
 app.options('*', (req, res) => {
@@ -34,16 +33,14 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(cookieParser()); 
+app.use(cookieParser());
 
-// Statik dosyaları sunmak için
 app.use(express.static('public'));
 
 app.use("/auth", authRoute);
 app.use("/posts", postRoute);
 app.use("/users", userRoute);
 
-// Diğer tüm rotalar için 404 middleware'i
 app.use((req, res, next) => {
     res.status(404).send('Not Found');
 });
