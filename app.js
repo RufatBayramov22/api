@@ -34,9 +34,9 @@ app.options('*', (req, res) => {
 app.use(express.json());
 app.use(cookieParser()); 
 
-app.use("/api/auth", authRoute);
-app.use("/api/posts", postRoute);
-app.use("/api/users", userRoute);
+app.use("/auth", authRoute);
+app.use("/posts", postRoute);
+app.use("/users", userRoute);
 
 app.listen(8800, () => {
     console.log("Server is Running");
