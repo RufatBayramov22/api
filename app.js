@@ -11,10 +11,8 @@ dotenv.config();
 
 // CORS middleware'ini ayarla
 app.use(cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true
+    origin: 'http://tapal.az' 
 }));
-
 
 app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://tapal.az');
@@ -22,9 +20,9 @@ app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.sendStatus(200);
   });
-  
+
   app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', ['http://localhost:3000', 'http://tapal.az']); // Add your domain
+    res.header('Access-Control-Allow-Origin', ['http://tapal.az']); // Add your domain
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
