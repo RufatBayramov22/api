@@ -10,9 +10,13 @@ const app = express();
 dotenv.config();
 
 // CORS middleware'ini ayarla
-app.use(cors({
-    origin: 'http://tapal.az' 
-}));
+// Configure CORS
+const corsOptions = {
+    origin: 'http://tapal.az', // Allow requests from this origin
+    credentials: true // Allow credentials (cookies, authorization headers)
+  };
+  
+  app.use(cors(corsOptions));
 
 app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://tapal.az');
