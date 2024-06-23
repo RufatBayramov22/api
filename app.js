@@ -11,8 +11,13 @@ const app = express();
 dotenv.config();
 
 app.use(helmet());
-app.use(cors({origin:process.env.CLIENT_URL,credentials:true}))
-
+// Allow requests from your frontend domain
+const corsOptions = {
+    origin: 'http://tapal.az' 
+  };
+  
+  app.use(cors(corsOptions));
+  
 
 app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://tapal.az');
