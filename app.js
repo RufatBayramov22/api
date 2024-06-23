@@ -17,8 +17,6 @@ app.use(helmet());
     origin: 'http://tapal.az' 
 }));
   
-  app.use(cors(corsOptions));
-  
 
 app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://tapal.az');
