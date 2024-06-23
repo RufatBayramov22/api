@@ -11,12 +11,7 @@ const app = express();
 dotenv.config();
 
 app.use(helmet());
-const corsOptions = {
-  origin: 'http://tapal.az', // İzin verilen köken
-  credentials: true // Çerezler ve kimlik doğrulama bilgileri için izin ver
-};
-
-app.use(cors(corsOptions));
+app.use(cors({origin:process.env.CLIENT_URL,credentials:true}))
 
 
 app.options('*', (req, res) => {
@@ -37,9 +32,9 @@ app.use(cookieParser());
 
 app.use(express.static('public'));
 
-app.use("/auth", authRoute);
-app.use("/posts", postRoute);
-app.use("/users", userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/posts", postRoute);
+app.use("/api/users", userRoute);
 
 app.use((req, res, next) => {
     res.status(404).send('Not Found');
