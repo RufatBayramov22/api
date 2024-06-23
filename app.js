@@ -12,9 +12,10 @@ dotenv.config();
 
 app.use(helmet());
 // Allow requests from your frontend domain
-const corsOptions = {
+  // Configure CORS to allow requests from your frontend domain
+  app.use(cors({
     origin: 'http://tapal.az' 
-  };
+}));
   
   app.use(cors(corsOptions));
   
@@ -35,7 +36,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(express.static('public'));
 
 app.use("/auth", authRoute);
 app.use("/posts", postRoute);
