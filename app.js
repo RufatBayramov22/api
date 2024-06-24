@@ -11,12 +11,18 @@ const app = express();
 dotenv.config();
 
 app.use(helmet());
-// CORS siyasətini tətbiq edin
-app.use(cors({
-    origin: 'http://tapal.az', // Yalnız tapal.az domainindən sorğulara icazə verin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Müəyyən metodları dəstəkləyin
-    allowedHeaders: ['Content-Type', 'Authorization'] // İcazə verilmiş başlıqları təyin edin
-  }));
+// // CORS siyasətini tətbiq edin
+// app.use(cors({
+//     origin: 'http://tapal.az', // Yalnız tapal.az domainindən sorğulara icazə verin
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Müəyyən metodları dəstəkləyin
+//     allowedHeaders: ['Content-Type', 'Authorization'] // İcazə verilmiş başlıqları təyin edin
+//   }));
+  const corsOptions = {
+    origin: 'http://tapal.az', // Allow requests from this origin
+    credentials: true // Allow credentials (cookies, authorization headers)
+};
+
+app.use(cors(corsOptions));
   
   // OPTIONS metodunu əməliyyatına qoyun
   app.options('*', cors()); // Bütün URL-lər üçün OPTIONS istəyi dəstəkləyin
